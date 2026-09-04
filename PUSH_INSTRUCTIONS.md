@@ -2,24 +2,24 @@
 
 The service itself stays private. Only this folder becomes public.
 
+> `v1.0.0` + `v1.1.0` are already published. Below is the repeatable flow
+> for every future version. `CHANGELOG.md` always holds the *next* release's
+> notes only — old notes live on their GitHub release pages, no history files needed.
+
 ```bash
-# 1. From the fixture-repo/ directory:
+# 1. From the fixture-repo/ directory (first time only):
 git init -b main
-git add README.md CHANGELOG.md CHANGELOG-v1.0.0.md images dist PUSH_INSTRUCTIONS.md .github
-git commit -m "feat: public update fixture v1.0.0 + v1.1.0"
+git add README.md CHANGELOG.md images dist PUSH_INSTRUCTIONS.md .github
+git commit -m "feat: public update fixture"
 gh repo create YOUR_GITHUB_ACCOUNT/YOUR_UPDATES_REPO --public --source=. --push
 
 # 2. Fix manifest URLs to your account (one sed, then amend):
 sed -i 's|OWNER/REPO|YOUR_GITHUB_ACCOUNT/YOUR_UPDATES_REPO|g' dist/images-manifest.json
 git commit -am "fix: manifest URLs" && git push
 
-# 3. Publish the two demo releases (order matters):
-gh release create v1.0.0 --title "v1.0.0" --notes-file CHANGELOG-v1.0.0.md \
-  dist/myapp-v1.0.0.exe dist/SHA256SUMS.txt dist/images-manifest.json \
-  images/welcome-hero.png images/welcome-banner.png images/welcome-avatar.png
-
-gh release create v1.1.0 --title "v1.1.0" --notes-file CHANGELOG.md \
-  dist/myapp-v1.1.0.exe dist/SHA256SUMS.txt dist/images-manifest.json \
+# 3. Publish each release (example for v1.2.0):
+gh release create v1.2.0 --title "v1.2.0" --notes-file CHANGELOG.md \
+  dist/myapp-v1.2.0.exe dist/SHA256SUMS.txt dist/images-manifest.json \
   images/welcome-hero.png images/welcome-banner.png images/welcome-avatar.png
 
 # 4. Verify the service sees it (no token needed):
