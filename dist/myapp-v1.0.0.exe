@@ -1,0 +1,3 @@
+MyApp placeholder binary v1.0.0
+This is a TEXT stand-in with an .exe extension.
+The updater treats it as opaque bytes + SHA-256.

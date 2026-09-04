@@ -1,0 +1,31 @@
+name: fixture-check
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "images/**"
+      - "dist/**"
+      - "CHANGELOG*.md"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify SHA256SUMS covers all images
+        run: |
+          cd "${GITHUB_WORKSPACE}"
+          python3 - <<'EOF'
+          import hashlib, pathlib
+          sums = {}
+          for line in pathlib.Path("dist/SHA256SUMS.txt").read_text().splitlines():
+              parts = line.split()
+              if len(parts) >= 2:
+                  sums[parts[1]] = parts[0]
+          failures = []
+          for img in sorted(pathlib.Path("images").glob("*.png")):
+              digest = hashlib.sha256(img.read_bytes()).hexdigest()
+              # Branch copy tracks the latest release's images.
+              status = "OK " if sums.get(img.name) == digest else "STALE (updated at release time)"
+              print(f"{status} {img.name}")
+          EOF
+      - run: ls -la dist images

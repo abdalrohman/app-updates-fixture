@@ -1,0 +1,23 @@
+{
+  "version": "v1.1.0",
+  "images": [
+    {
+      "name": "welcome-hero.png",
+      "sha256": "490a2975572faa18de47e03b942b7c519b200d7054e75beec2c3ec4b99c02c14",
+      "size": 26954,
+      "url": "https://github.com/abdalrohman/app-updates-fixture/releases/download/v1.1.0/welcome-hero.png"
+    },
+    {
+      "name": "welcome-banner.png",
+      "sha256": "b36cf492bc7de9c4309841e4ee3d4ab3c45f3155e73ff83070ed1c07be9c7ac4",
+      "size": 22014,
+      "url": "https://github.com/abdalrohman/app-updates-fixture/releases/download/v1.1.0/welcome-banner.png"
+    },
+    {
+      "name": "welcome-avatar.png",
+      "sha256": "dd4f5307b7c037523aff01a949ec95298a892381a3483b8e904aed1e9a4d15f3",
+      "size": 11109,
+      "url": "https://github.com/abdalrohman/app-updates-fixture/releases/download/v1.1.0/welcome-avatar.png"
+    }
+  ]
+}
